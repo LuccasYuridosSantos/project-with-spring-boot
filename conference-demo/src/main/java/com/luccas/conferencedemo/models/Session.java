@@ -1,10 +1,16 @@
 package com.luccas.conferencedemo.models;
 
+import org.w3c.dom.stylesheets.LinkStyle;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity(name = "sessions")
 public class Session {
@@ -22,6 +28,13 @@ public class Session {
 
 	@Column(name = "session_length")
 	private Integer sessionLength;
+
+	@ManyToMany
+	@JoinTable(
+			name = "session_speakers",
+			joinColumns = @JoinColumn(name = "session_id"),
+			inverseJoinColumns = @JoinColumn(name = "speaker_id"))
+	private List<Speaker> speakers;
 
 	public Session() {
 	}
@@ -56,5 +69,13 @@ public class Session {
 
 	public void setSessionLength(Integer sessionLength) {
 		this.sessionLength = sessionLength;
+	}
+
+	public List<Speaker> getSpeakers() {
+		return speakers;
+	}
+
+	public void setSpeakers(List<Speaker> speakers) {
+		this.speakers = speakers;
 	}
 }

@@ -1,10 +1,17 @@
 package com.luccas.conferencedemo.models;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity(name = "speakers")
 public class Speaker {
@@ -28,6 +35,13 @@ public class Speaker {
 
 	@Column(name = "speaker_bio")
 	private String speakerBio;
+
+	@Lob
+	@Type(type = "org.hibernate.type.BinaryType")
+	private byte[] speaker_photo;
+
+	@ManyToMany(mappedBy = "speakers")
+	private List<Session> sessions;
 
 	public Speaker() {
 	}
@@ -78,5 +92,21 @@ public class Speaker {
 
 	public void setSpeakerBio(String speakerBio) {
 		this.speakerBio = speakerBio;
+	}
+
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+	public byte[] getSpeaker_photo() {
+		return speaker_photo;
+	}
+
+	public void setSpeaker_photo(byte[] speaker_photo) {
+		this.speaker_photo = speaker_photo;
 	}
 }
