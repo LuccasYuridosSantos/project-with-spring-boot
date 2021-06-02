@@ -1,5 +1,6 @@
 package com.luccas.conferencedemo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Entity(name = "sessions")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Session {
 
 	@Id

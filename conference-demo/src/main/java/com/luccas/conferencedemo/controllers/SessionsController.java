@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/apiv1/sessions")
+@RequestMapping("/api/v1/sessions")
 public class SessionsController {
 
 	@Autowired

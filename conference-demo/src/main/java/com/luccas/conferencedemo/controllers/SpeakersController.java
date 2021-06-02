@@ -1,5 +1,6 @@
 package com.luccas.conferencedemo.controllers;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.luccas.conferencedemo.models.Speaker;
 import com.luccas.conferencedemo.repositories.SpeakerRepository;
 import org.springframework.beans.BeanUtils;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/speakers")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class SpeakersController {
 
 	@Autowired
